@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	width: 800px;
+	height: 350px;
+	margin: 100px auto;
+	border:1px solid #ccc;
+}
+.btns {
+    margin:15px 0 15px 0;
+    text-align: center;
+}
+input {
+    width: 250px;
+    height: 26px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+button {
+	width: 80px;
+	height: 30px;
+	background-color: #1196EE;
+	border:none;
+	outline: none;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.content {
+    margin:30px 30px 0 30px;
+}
+p {
+	margin-bottom: 17px;
+	text-indent: 2em;
+}
+span {
+	color: red;
+}
+.now
+{
+  color: #000;
+}
