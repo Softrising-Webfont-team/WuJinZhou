@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tab选项卡</title>
+	<style type="text/css">
+		* {
+            padding: 0;
+            margin: 0;
+		}
+		.box {
+			width: 600px;
+			height: 500px;
+			border: 1px solid #ccc;
+			margin:100px auto;
+		}
+		ul {
+			width: 600px;
+			height: 50px;
+			background-color: skyblue;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		ul li {
+			list-style: none;
+			width: 200px;
+			height: 50px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			line-height: 50px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.on {
+			border-bottom: 2px solid blue;
+		}
+		.content {
+			width: 600px;
+			height: 450px;
+			overflow: hidden;
+			position: relative;
+		}
+		.content div {
+			width: 600px;
+			height: 450px;
+			position: absolute;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<div class="list">
+		<ul>
+			<li class="on">新闻</li>
+			<li>体育</li>
+			<li>财经</li>
+		</ul>
+	</div>
+	<div class="content">
+		<div style="display: block;">123456</div>
+		<div>456789</div>
+		<div>789132</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+	var list =document.querySelectorAll('li');
+	var content = document.querySelector('.content');
+	var divList = content.children;
+	console.log(divList);
+	for(var i = 0; i<list.length; i++) {
+		(function(i){
+			list[i].onclick = function () {
+				for(var j = 0 ; j<list.length; j++) {
+					list[j].className = '';	
+					divList[j].style.display = 'none';	
+				}
+				this.className = 'on';
+				divList[i].style.display = 'block';
+		    }
+		}(i))
+	}
+</script>
+</html>
