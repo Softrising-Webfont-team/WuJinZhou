@@ -1,0 +1,102 @@
+* {
+	margin: 0;
+	padding:0;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+}
+
+.clearfix {
+	content: '';
+	clear: both;
+	display: block;
+}
+.box {
+    width: 100%;
+    height: 100%;
+   
+	.boxLeft {
+        width: 120px;
+        height: 100%;
+        background-color: #263238;
+        overflow: hidden; 
+        float: left;
+        span {
+			display: inline-block;
+			width: 100%;
+			padding: 10px 0;
+			color: #677074;
+			text-align:center;
+		    cursor: pointer;
+		}
+        .list {
+        	width: 100%;
+        	height: auto;
+        	margin-top: 100px;
+        }
+        // list第一层li标签
+        .list>li {
+        }
+        //所有的li标签
+        .smallList li {
+        	color: #677074;
+        	padding:10px 0;
+        	width: 100%;
+        	text-align:center;
+        	cursor: pointer;
+        }
+        .smallList {
+        	max-height: 0px;
+        	overflow: hidden;
+        	transition: all 0.3s;
+        }
+        span:hover {
+            background-color: #666;
+        	color: #fff;
+        }
+        .smallList li:hover {
+        	background-color: #666;
+        	color: #fff;
+        }
+	}
+	.boxRight {
+		float: left;
+        border: 1px solid #000;
+        width: calc(100% - 120px);
+        height: auto;
+        box-sizing: border-box;
+        .nodeS {
+        	height: 75px;
+        	width: 100%;
+        	p {
+        		width: 100px;
+        		height: 75px;
+        		line-height:75px;
+        		text-align: center;
+        		float: left;
+        		cursor:pointer;
+        	}
+        	span {
+        		display: inline-block;
+        		line-height: 75px;
+        	}
+        	a {
+        		display: inline-block;
+        		text-decoration: none;
+        		color: #000;
+        		font-weight: bold;
+        		font-size: 21px;
+        		margin-left: 10px;
+        		width: 15px;
+        	}
+        }
+        .pageS {
+        	height: 75px;
+        	width: 100%;
+        	display: none;
+        	line-height:75px;
+        	font-size: 25px;
+        }
+	}
+}
