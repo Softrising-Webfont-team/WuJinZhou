@@ -1,7 +1,10 @@
 <template>
   <div class='search'>
+    <div class="title">
+      当征信报告的真实性存在疑问时 可通过区块链浏览器查证《最高人民法院关于互联网法院审理案件若干问题的规定》已于2018年9月7日起施行。其中第十一条称，当事人提交的电子数据，通过电子签名、可信时间戳、哈希值校验、区块链等证据收集、固定和防篡改的技术手段或者通过电子取证存证平台认证，能够证明其真实性的，互联网法院应当确认。
+    </div>
     <div class="inputBox">
-      <input type="text" name="" v-model="value" placeholder="输入xxxx查询">
+      <input type="text" name="" v-model="value" placeholder="您本次查询的征信报告以及您的查询动作将被区块链存证">
       <span class="searchIcon" @click="getData" @keyup.enter="getData">
         <sicon name="search" scale="2.8"></sicon>
       </span>
@@ -14,7 +17,7 @@
         <loading v-if="this.show"></loading>
       </span>
     </div>
-    <p class="address">{{this.url}}</p>
+    <p class="address" v-if="this.show1"><a :href="this.url">PDF链接</a></p>
   </div>
 </template>
 
@@ -28,24 +31,31 @@
         txt2:'上链完成',
         show:false,
         res:'',
-        url:'',
+        url:'http://172.20.3.232:3000',
         timer:'',
-        value:''
+        value:'',
+        show1:false
       }
     },
     methods:{
       getData() {
+        this.show1 =false; 
         if(this.value == '') {
           return;
         }
         this.txt = this.txt1;
         this.show = !this.show;
-        // this.res = this.$api.getData('/company?name=七色纺快时尚有限责任公司');
-        this.timer = setTimeout(()=>{
+        this.$api.getData('/api/company?name='+this.value)
+        .then((res)=>{
+            this.res = res;
+                    this.timer = setTimeout(()=>{
           this.txt = this.txt2;
           this.show = !this.show;
-          this.url = this.res;
+          this.url += res[0].pdf_folder;
+          this.show1 = true;
         }, 3000)
+
+        })
       }
     },
     components: {
@@ -62,17 +72,25 @@
     padding: 0;
     margin: 0;
   }
+  .title {
+    margin:0 auto;
+    width: 1000px;
+    height: auto;
+    margin-top: 70px;
+    line-height: 32px;
+    font-size: 22px;
+  }
   .inputBox {
     position: relative;
     margin: 0 auto;
-    width: 510px;
+    width: 700px;
     height: auto;
     text-align: center;
-    margin-top:220px;
+    margin-top:90px;
     input {
       border: 2px solid #4EA1C7;
       outline: none;
-      width: 510px;
+      width: 700px;
       height: 42px;
       padding: 1px 5px;
       color: #7b7d87;
