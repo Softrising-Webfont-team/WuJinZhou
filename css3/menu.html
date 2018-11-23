@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./css/menu.css">
+</head>
+<body>
+<div class="select">
+		<span class="txt">新闻</span>
+		<img src="./images/triangle.png">
+    <ul>
+		<li>新闻</li>
+		<li>体育</li>
+		<li>财经</li>
+		<li>娱乐</li>
+		<li>军事</li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+	var list = document.querySelectorAll('li');
+	var txt = document.querySelector('.txt');
+	var ul = document.querySelector('ul');
+	var pic = document.querySelector('img');
+	for(var i = 0; i<list.length; i++) {
+		list[i].onclick = function () {
+            txt.innerHTML = this.innerHTML;
+		}
+	}
+    pic.onclick = function (e) {
+    	if(ul.className == '') {
+    		ul.className = 'show';
+    	}
+    	else {
+    		ul.className = '';
+    	}
+    	//阻止默认事件冒泡
+    	e.stopPropagation();
+    }
+  
+  
+
+    //实现点击其他地方收缩菜单
+    document.onclick = function () {
+    	ul.className = '';
+    }
+    
+</script>
+</html>

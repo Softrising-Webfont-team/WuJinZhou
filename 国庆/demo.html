@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			padding:0;
+			margin: 0;
+		}
+		#show {
+			color:red;
+			display: none;
+		}
+		#show1 {
+			color:#11EE10;
+			display: none;
+		}
+		#show2 {
+			color:red;
+			display: none;
+		}
+		#show3 {
+			color:#11EE10;
+			display: none;
+		}
+		.box1 {
+			margin-top: 50px;
+			width: 500px;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p>失去焦点时检测输入框</p>
+		<input type="text" name="" id="txt">
+		<span id="show">✖</span>
+		<span id="show1">✔</span>
+	</div>
+	<div class="box1">
+		<p>实时检测输入框(必须输入6位以上)</p>
+		<input type="text" name="" id="txt1" oninput="f1()" onpropertychange="f1()">
+		<span id="show2">✖</span>
+		<span id="show3">✔</span>
+	</div>
+</body>
+<script type="text/javascript">
+	//失去焦点时检测输入框
+	var txt =document.getElementById('txt');
+	var show = document.getElementById('show');
+	var show1 = document.getElementById('show1');
+	txt.onchange = function () {
+		if(txt.value.length <= 0) {
+			show.style.display = 'block';
+			show1.style.display = 'none';
+		}
+		if(txt.value.length < 6) {
+            show.style.display = 'block';
+			show1.style.display = 'none';
+		}
+		if(txt.value.length >= 6) {
+			show.style.display = 'none'; 
+			show1.style.display = 'block';
+		}
+	}
+
+	//实时检测输入框
+	var txt1 =document.getElementById('txt1');
+	var show2 = document.getElementById('show2');
+	var show3 = document.getElementById('show3');
+	function f1 () {
+		if(txt1.value.length <= 0) {
+			show2.style.display = 'block';
+			show3.style.display = 'none';
+		}
+		if(txt1.value.length < 6) {
+            show2.style.display = 'block';
+			show3.style.display = 'none';
+		}
+		if(txt1.value.length >= 6) {
+            show3.style.display = 'block';
+			show2.style.display = 'none';
+		}
+	}
+</script>
+</html>
