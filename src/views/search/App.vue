@@ -17,7 +17,7 @@
         <loading v-if="this.show"></loading>
       </span>
     </div>
-    <p class="address" v-if="this.show1"><a :href="this.url">PDF链接</a></p>
+    <p class="address" v-if="this.show1">{{this.txt3}}<a :href="this.url" v-if="this.show2">PDF链接</a></p>
   </div>
 </template>
 
@@ -29,32 +29,48 @@
         txt:'',
         txt1:'正在上链',
         txt2:'上链完成',
+        txt3:'',
         show:false,
-        res:'',
         url:'http://172.20.3.232:3000',
         timer:'',
         value:'',
-        show1:false
+        show1:false,
+        show2:false,
+        res:'',
+
       }
     },
     methods:{
       getData() {
-        this.show1 =false; 
+        this.txt3 = '';
+        this.show1 = false; 
+        this.show2 = false;
         if(this.value == '') {
           return;
         }
         this.txt = this.txt1;
         this.show = !this.show;
-        this.$api.getData('/api/company?name='+this.value)
+        this.$api.getData('/company?name='+this.value)
         .then((res)=>{
-            this.res = res;
-                    this.timer = setTimeout(()=>{
-          this.txt = this.txt2;
-          this.show = !this.show;
-          this.url += res[0].pdf_folder;
-          this.show1 = true;
-        }, 3000)
-
+          // console.log(res);
+          this.res = res;
+          // console.log(this.res);
+          if (res.length == 0) {
+            this.timer = setTimeout(()=>{
+              this.txt = this.txt2;
+              this.show = !this.show;
+              this.txt3 = '数据不存在' ;
+              this.show1 = true;
+            }, 3000);
+          } else {
+            this.timer = setTimeout(()=>{
+              this.txt = this.txt2;
+              this.show = !this.show;
+              this.show2 = true; 
+              this.url += res[0].pdf_folder;
+              this.show1 = true;
+            }, 3000)
+          }
         })
       }
     },
